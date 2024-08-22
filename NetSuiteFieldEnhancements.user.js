@@ -112,10 +112,9 @@ jQuery(function($) {
     if (currencySpan) {
         var spanContent = currencySpan.textContent.trim();
         if (spanContent === "British pound") {
-            currency = "£ "
-        }
-        if (spanContent === "Polish Zloty") {
-            currency = "zł "
+            currency = "£ ";
+        } else if (spanContent === "Polish Zloty") {
+            currency = "zł ";
         }
     }
 
