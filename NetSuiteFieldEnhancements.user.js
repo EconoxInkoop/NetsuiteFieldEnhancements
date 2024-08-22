@@ -114,6 +114,9 @@ jQuery(function($) {
         if (spanContent === "British pound") {
             currency = "£ "
         }
+        if (spanContent === "Polish Zloty") {
+            currency = "zł "
+        }
     }
 
     //Color credit limit
