@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Netsuite field enhancements
 // @description  Netsuite field enhancements including row coloring, percentage rounding and adding currency symbols
-// @version      2.49
+// @version      2.50
 // @match        https://*.app.netsuite.com/app/accounting/transactions/*?id=*
 // @exclude     https://*.app.netsuite.com/*&e=T*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=netsuite.com
@@ -115,6 +115,10 @@ jQuery(function($) {
             currency = "£ ";
         } else if (spanContent === "Polish Zloty") {
             currency = "zł ";
+        } else if (spanContent === "Danish Krone") {
+            currency = "kr. ";
+        } else if (spanContent === "Swedish Krona") {
+            currency = "kr ";
         }
     }
 
@@ -135,6 +139,15 @@ jQuery(function($) {
         var maxRefundContent = parseFloat(maxRefundSpan.textContent.replace('.', '').replace(',', '.').trim());
         if (maxRefundContent > 0) {
             highlightField(maxRefundSpan);
+        }
+    }
+
+    //Color payment method
+    var paymentMethodSpan = document.querySelector('div[data-walkthrough="Field:custbody_cs_payment_term"] span[data-nsps-type="field_input"] span a');
+    if (paymentMethodSpan) {
+        var paymentMethodContent = paymentMethodSpan.textContent.trim();
+        if (paymentMethodContent == "Contante betaling") {
+            highlightField(paymentMethodSpan);
         }
     }
 
